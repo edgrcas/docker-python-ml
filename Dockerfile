@@ -12,8 +12,11 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade \
     numpy \
     scipy \
+    spacy \    
     scikit-learn \
     nltk
+    
+RUN python -m spacy download es
 
 COPY ./download.py ./
 RUN python download.py
