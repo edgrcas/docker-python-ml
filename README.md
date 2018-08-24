@@ -6,8 +6,14 @@
 
  - Docker 1.*
 
-### Run Dev
+### Build Alphanum
 
-    cd /[project_path]
-    docker build -t python-ml .
-    docker run -v $(pwd):/app:rw -it python-ml sh
+    cd /alphanum
+    docker build -t py-alphanum-ml .
+    docker run -v $(pwd):/app:rw -it py-alphanum-ml sh
+
+### Build Bot
+
+    cd /bot
+    docker build -t py-bot-ml .
+    docker run -v $(pwd):/app:rw -it py-bot-ml sh
