@@ -9,5 +9,5 @@
 ### Run Dev
 
     cd /[project_path]
-    docker build -t py_minimal_ml .
-    docker run -v $(pwd):/app:rw -it py_minimal_ml sh
+    docker build -t python-ml .
+    docker run -v $(pwd):/app:rw -it python-ml sh
