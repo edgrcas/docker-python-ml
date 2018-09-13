@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.9.0-gpu
+FROM tensorflow/tensorflow:nightly
 MAINTAINER Edux <edaniel15@gmail.com>
 
 RUN pip install -U pip
