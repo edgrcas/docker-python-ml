@@ -1,22 +1,18 @@
-FROM python:3-slim
-MAINTAINER Edux <edaniel15@gmail.com>
+# set base image (host OS)
+FROM python:3.9.2-alpine3.13
 
-RUN pip install -U pip
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    gfortran \
-    libblas-dev \
-    liblapack-dev \
-    libxft-dev \
-    && rm -rf /var/lib/apt/lists/*
+# set the working directory in the container
+RUN mkdir /app
+WORKDIR /app
 
-RUN pip install --upgrade \
-    reTexto \
-    numpy \
-    scipy \
-    spacy \
-    scikit-learn \
-    nltk
+# copy the dependencies file to the working directory
+COPY . /app
 
-RUN python -m spacy download es_core_news_sm
-RUN python -m spacy link es_core_news_sm es
+RUN apk update
+RUN apk --no-cache --update-cache add make automake gcc gfortran g++ \
+    build-base python3-dev musl-dev linux-headers openblas-dev binutils
+RUN pip install cython
+
+# install dependencies
+RUN pip install -r ci/_packages.txt
+RUN python -m spacy download es_dep_news_trf
