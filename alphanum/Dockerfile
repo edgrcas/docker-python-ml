@@ -6,7 +6,7 @@ FROM python:3.9.2-alpine3.13
 # WORKDIR /app
 
 # copy the dependencies file to the working directory
-COPY _packages.txt ~/_packages.txt
+COPY _packages.txt _packages.txt
 
 RUN apk update
 RUN apk --no-cache --update-cache add make automake gcc gfortran g++ \
@@ -14,5 +14,5 @@ RUN apk --no-cache --update-cache add make automake gcc gfortran g++ \
 RUN pip install cython
 
 # install dependencies
-RUN pip install -r ~/_packages.txt
+RUN pip install -r _packages.txt
 
